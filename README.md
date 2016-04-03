@@ -17,6 +17,7 @@ www.foodcombiningindonesia.co.id
 www.kulinermalang.info/wisata-kuliner-malang/
 
 3. Bagian-bagian yang ada di website
+
 - Sejarah 
 - Visi Misi
 - Kegiatan
