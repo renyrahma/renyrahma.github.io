@@ -9,6 +9,7 @@ melalui website ini, saya berharap bisa menjembatani  visi misi komunitas kami t
 website yang akan saya buat nanti bersifat interaktif. Agar terjalin komunikasi antara pembaca dengan komunitas Aku Halal Malang
 
 2. Referensi website 
+
 www.halalmui.org
 
 www.foodcombiningindonesia.co.id
