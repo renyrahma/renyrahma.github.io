@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase Test</title>
+    <script
+            script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js">
+    </script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet"
+            type="text/css"
+            href="akuhalal.css">
+  </head>
+<body>
+    
+    <h2 id="calldata"></h2>
+    <script>
+    var mydata = new Firebase("https://codingmumreny.firebaseio.com/");
+        
+    mydata.set({
+  title: "Hello World!",
+  author: "Firebase",
+  location: {
+    city: "Malang",
+    state: "California",
+    zip: 94103
+  }
+});
+    mydata.child("location/city").on("value", function(reny) {
+  //alert(snapshot.val());  // Alerts "San Francisco"
+    var dataku = 
+        document.getElementById('calldata');
+        dataku.innerHTML = dataku.innerHTML + 
+        'saya berasal dari ' + reny.val();
+});
+    </script>
+    
+</body>
+</html>

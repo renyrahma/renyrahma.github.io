@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Aku_Halal_Malang</title>
+    <title>Aku Halal Malang</title>
+      <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js">
+      </script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+      <link rel="stylesheet"
+            type="text/css"
+            href="akuhalal.css">
   </head>
   <body>
-    <h1>Selamat Datang di Website kami</h1>
+    <h1 style="color:yellow;"><marquee behavior="scroll">Selamat Datang di Website Kami</marquee></h1>
       
-    <a class="btn btn-danger">
-      Klik saya
-      </a>
-      
+      <div class="container">
       <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+  
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Aneka Kuliner Halal Malang</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
@@ -26,10 +27,17 @@
       <li><a href="#">Kegiatan</a></li> 
       <li><a href="#">Galery</a></li> 
       <li><a href="#">Charity</a></li>
-      <li><a href="#"></a><button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#myModal">log in</button></li>
+      <li><a href="#">Akad Halal</a></li>
+      <li><a href="#">Review Kuliner Halal</a></li>
+      <li><a href="#">Halal Day</a></li>
+        <li><a href="#">Buku Tamu</a></li>
+          </ul>
+          </nav>
       
-    </ul>
-  </div>
+          <div class="jumbotron">
+          <h1 style="font-size:50px; font-style:bold; color:orange; text-align:center;">Aneka Kuliner Halal Malang</h1>
+          </div>
+          
           
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -57,6 +65,27 @@
     <div class="item">
       <img src="akuhalal/team2.jpg" alt="cantik">
     </div>
+      
+      <div class="item">
+      <img src="akuhalal/prm1.jpg" alt="pink">
+      </div>
+      
+    <div class="item">
+      <img src="akuhalal/teamerah.jpg" alt="merah">
+      </div>
+    
+      <div class="item">
+      <img src="akuhalal/looman1.jpg" alt="looman">
+      </div>
+    
+      <div class="item">
+      <img src="akuhalal/mie1.jpg" alt="mie">
+      </div>
+    
+      <div class="item">
+      <img src="akuhalal/otako3.jpg" alt="otako">
+      </div>
+    
        </div>
 
   <!-- Left and right controls -->
@@ -68,78 +97,80 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> 
+          <div class="row">
+    <div class="col-sm-4">
     
-        
-</nav>
-      <div class="row">
-    <div class="col-sm-4" style="background-color:lavender;">  <div class="row-fluid">
-  <h2>Anggota Aku Halal</h2>
-  <p>Daftar Anggota Aneka Kuliner Halal Malang</p>                                                                                      
-  <table class="table table-bordered table striped table-hover">          
+ 
+              
+       <a href="#"><span class="glyphicon glyphicon-user"></span><button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#myModal">Daftar Member</button></a><br>
+        <a href="#"><span class="glyphicon glyphicon-user"></span><button type="button" class="btn btn-danger btn-xl " data-toggle="modal" data-target="#myModal">Form Akad Halal</button></a>
+      
+              
+     </div>         
+              
+              
+              
+    <div class="col-sm-8;" style="font-size:20px; color:white;"> 
+        <table border=3 cellspacing=0>
     <thead>
-      <tr class="danger">
-        <th class="center"></th>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Alamat</th>
-        <th>umur</th>
-        <th>Kota</th>
-        <th>Negara</th>
-      </tr>
+  <tr>
+      <th>id</th>
+      <th>keterangan</th>
+      <th>produk_halal</th>
+        </tr>
     </thead>
     <tbody>
-      <tr class="warning">
-        <td>#</td>
-        <td>1</td>
-        <td>Reny</td>
-        <td>Gadang</td>
-        <td>34</td>
-        <td>Malang</td>
-        <td>Indonesia</td>
-      </tr>
-        <tr class="success">
-        <td>#</td>
-        <td>2</td>
-        <td>Fafa</td>
-        <td>Jl. Kelud</td>
-        <td>25</td>
-        <td>Malang</td>
-        <td>Indonesia</td>
-      </tr>
-         <tr class="primary">
-        <td>#</td>
-        <td>3</td>
-        <td>Mr. ceples</td>
-        <td>Blimbing</td>
-        <td>35</td>
-        <td>Malang</td>
-        <td>Indonesia</td>
-        </tr>
+        </tbody>       
+</table>
     
-    </tbody>
-  </table>
-  </div>
-</div>
- </div>
-    <div class="col-sm-4" style="background-color:lavenderblush;"><div class="row>"
-         <form>
-        <div class="form-group">
-        <input class="form-control"
-               placeholder="username" type="text">
-    </div>
+    <script>
+        
+        //1. konek ke firebase
+    var ref = new Firebase('https://codingmumreny.firebaseio.com/');
+        $("table tbody").html("");
+     ref.on("value", function(data) {
+           var produk = data.val().produk;
     
-        <div class="form-group">
-        <input class="form-control"
-               placeholder="masukkan password" type="password">
+     $.each(produk, function(index, value){ 
+         var id = value.id;
+         var keterangan = value.keterangan;
+         var produk_halal = value.produk_halal;
+         
+         $("table tbody").append("<tr>"+ 
+                                 "<td>"+id+ "</td>"+
+                                "<td>"+keterangan+"</td>"+
+                                 "<td>"+produk_halal+"</td>"+
+                                 "</tr>"
+         );
+     });
+            
+     });
+    </script>
+    
+        
+        Ini isinya artikel
+              
     </div>
-    </form>
-</div>
-    <div class="col-sm-4" style="background-color:lavender;">Basecamp AKU Halal Malang<br>
-    Mie Serdadu<br>Griyashanta 18</div>
-  </div>
-</div>
+      
+              
+    
+     </div> 
+      
+              
+              
 
+
+
+      <footer class="container text-center">    
+  <h1 style="color:yellow;">We Only Eat Halal Food</h1><br>
+  <h5 style="color:white;">Website designed by Aku Halal Team<br>
+    @2016</h5>
+</footer>
+
+          
+
+   
       
       <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -163,8 +194,8 @@
 </div>
       
       <script>
-      prompt("daftar member dulu")      
-      alert(12+5);
+      prompt("Apakah Makanan Anda sudah Halal hari ini?")      
+      alert(50+50);
       </script>
       
       
@@ -173,21 +204,8 @@
     <script src="js/bootstrap.min.js"></script>
       
       
-    <div class="row>"
-         <form>
-        <div class="form-group">
-        <input class="form-control"
-               placeholder="username" type="text">
-    </div>
-    
-        <div class="form-group">
-        <input class="form-control"
-               placeholder="masukkan password" type="password">
-    </div>
-    </form>
-
-</body>
-</html>
+   
+</div>
 
   </body>
 </html>

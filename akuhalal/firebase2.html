@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Firebase Test</title>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js">
+    </script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+      <!--<link rel="stylesheet"
+            type="text/css"
+            href="akuhalal.css">-->
+  </head>
+<body>
+    
+    <table border=1 cellspacing=0>
+    <thead>
+  <tr>
+      <th>id</th>
+      <th>produk</th>
+      <th>keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        </tbody>       
+</table>
+    
+    <script>
+        
+        //1. konek ke firebase
+    var ref = new Firebase('https://codingmumreny.firebaseio.com/');
+        $("table tbody").html("");
+     ref.on("value", function(data) {
+           var produk = data.val().produk;
+    
+     $.each(produk, function(index, value){ 
+         var id = value.id;
+         var produk_halal = value.produk_halal;
+         var keterangan = value.keterangan;
+         
+         $("table tbody").append("<tr>"+ 
+                                 "<td>"+id+ "</td>"+
+                                "<td>"+produk_halal+"</td>"+
+                                 "<td>"+keterangan+"</td>"+
+                                 "</tr>"
+         );
+     });
+            
+     });
+    </script>
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    
+</body>
+</html>
